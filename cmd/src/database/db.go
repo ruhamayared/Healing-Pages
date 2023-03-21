@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/ruhamayared/healing-pages/src/models"
+	"github.com/ruhamayared/healing-pages/cmd/src/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
