@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/ruhamayared/healing-pages/src/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -23,5 +22,5 @@ func ConnectDB() {
 		log.Fatal("Failed to connect to database")
 	}
 
-	DB.AutoMigrate(&models.Entry{})
+	// DB.AutoMigrate(&models.Entry{})
 }
