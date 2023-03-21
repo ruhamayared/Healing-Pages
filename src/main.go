@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/ruhamayared/healing-pages/cmd/src/database"
-	"github.com/ruhamayared/healing-pages/cmd/src/handlers"
+	"github.com/ruhamayared/healing-pages/src/database"
+	"github.com/ruhamayared/healing-pages/src/handlers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

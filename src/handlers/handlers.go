@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/ruhamayared/healing-pages/cmd/src/database"
-	"github.com/ruhamayared/healing-pages/cmd/src/models"
+	"github.com/ruhamayared/healing-pages/src/database"
+	"github.com/ruhamayared/healing-pages/src/models"
 	"gorm.io/gorm"
 
 	"github.com/labstack/echo/v4"
