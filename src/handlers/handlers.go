@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"strconv"
 	"time"
@@ -13,12 +14,12 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func CreateEntry(c echo.Context, db *gorm.DB) error {
+func CreateEntry(c echo.Context) error {
 	// Initialize a new Entry object
 	entry := new(models.Entry)
 
 	// Bind the request body to the Entry object
-	if err := c.Bind(entry); err != nil {
+	if err := c.Bind(&entry); err != nil {
 		return c.String(http.StatusBadRequest, "invalid entry")
 	}
 
@@ -26,7 +27,7 @@ func CreateEntry(c echo.Context, db *gorm.DB) error {
 	entry.CreatedAt = time.Now()
 
 	// Use the Create method of the *gorm.DB object to insert the new entry into the database
-	if err := db.Create(entry).Error; err != nil {
+	if err := database.DB.Create(&entry).Error; err != nil {
 		return c.String(http.StatusInternalServerError, "Database error")
 	}
 
@@ -124,6 +125,7 @@ func GetAllEntries(c echo.Context) error {
 	if err != nil {
 		return err
 	}
+	fmt.Println(map[string]interface{}{"entries": entries, "error": err})
 
 	// Return a JSON response with the entries slice
 	return c.JSON(http.StatusOK, entries)

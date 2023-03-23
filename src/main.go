@@ -20,10 +20,7 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// Routes for CRUD operations
-	e.POST("/entries", func(c echo.Context) error {
-		// Pass the GORM database instance to the handler
-		return handlers.CreateEntry(c, database.DB)
-	})
+	e.POST("/entries", handlers.CreateEntry)
 
 	e.GET("/entries/:id", func(c echo.Context) error {
 		// Pass the GORM database instance to the handler
