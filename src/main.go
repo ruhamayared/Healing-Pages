@@ -21,19 +21,9 @@ func main() {
 
 	// Routes for CRUD operations
 	e.POST("/entries", handlers.CreateEntry)
-
-	e.GET("/entries/:id", func(c echo.Context) error {
-		// Pass the GORM database instance to the handler
-		return handlers.GetEntry(c, database.DB)
-	})
-
+	e.GET("/entries/:id", handlers.GetEntry)
 	e.GET("/entries", handlers.GetAllEntries)
-
-	e.PUT("/entries/:id", func(c echo.Context) error {
-		// Pass the GORM database instance to the handler
-		return handlers.UpdateEntry(c, database.DB)
-	})
-
+	e.PUT("/entries/:id", handlers.UpdateEntry)
 	e.DELETE("/entries/:id", handlers.DeleteEntry)
 
 	// Start the server and listen on port 8080

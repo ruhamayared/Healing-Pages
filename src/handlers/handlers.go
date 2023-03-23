@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 	"strconv"
 	"time"
@@ -35,7 +34,7 @@ func CreateEntry(c echo.Context) error {
 	return c.JSON(http.StatusCreated, entry)
 }
 
-func GetEntry(c echo.Context, db *gorm.DB) error {
+func GetEntry(c echo.Context) error {
 	// Extract the ID from the URL path parameter
 	id := c.Param("id")
 
@@ -43,7 +42,7 @@ func GetEntry(c echo.Context, db *gorm.DB) error {
 	var entry models.Entry
 
 	// Query the database for the Entry with the specified ID
-	result := db.First(&entry, id)
+	result := database.DB.First(&entry, id)
 
 	// Check if the Entry was not found
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
@@ -59,13 +58,13 @@ func GetEntry(c echo.Context, db *gorm.DB) error {
 	return c.JSON(http.StatusOK, entry)
 }
 
-func UpdateEntry(c echo.Context, db *gorm.DB) error {
+func UpdateEntry(c echo.Context) error {
 	// Extract the ID from the URL path parameter
 	id := c.Param("id")
 
 	// Query the database for the Entry with the specified ID
 	var entry models.Entry
-	result := db.First(&entry, id)
+	result := database.DB.First(&entry, id)
 
 	// Check if the Entry was not found
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
@@ -83,7 +82,7 @@ func UpdateEntry(c echo.Context, db *gorm.DB) error {
 	}
 
 	// Update the Entry in the database
-	result = db.Save(&entry)
+	result = database.DB.Save(&entry)
 
 	// Check for database errors
 	if result.Error != nil {
@@ -125,7 +124,6 @@ func GetAllEntries(c echo.Context) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println(map[string]interface{}{"entries": entries, "error": err})
 
 	// Return a JSON response with the entries slice
 	return c.JSON(http.StatusOK, entries)
