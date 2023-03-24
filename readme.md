@@ -64,5 +64,5 @@
 
 ### Links to Project
 
-[Backend Deployed Project Page]()  
+[Backend Deployed Project Page](https://healing-pages.onrender.com/entries)  
 [Frontend Deployed Project Page]()
