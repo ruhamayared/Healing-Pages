@@ -1,6 +1,7 @@
 package database
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -21,6 +22,7 @@ func ConnectDB() {
 
 	// .env variable
 	dsn := os.Getenv("DATABASE_URL")
+	fmt.Println("dsn---->:", dsn)
 
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 

@@ -1,11 +1,11 @@
 package main
 
 import (
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/ruhamayared/healing-pages/src/database"
 	"github.com/ruhamayared/healing-pages/src/handlers"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -14,6 +14,9 @@ func main() {
 
 	// Initialize a new instance of Echo
 	e := echo.New()
+
+	// Set up CORS middleware
+	e.Use(middleware.CORS())
 
 	// Add middleware for logging and recovering from panics
 	e.Use(middleware.Logger())
