@@ -65,4 +65,4 @@
 ### Links to Project
 
 [Backend Deployed Project Page](https://healing-pages.onrender.com/entries)  
-[Frontend Deployed Project Page]()
+[Frontend Deployed Project Page](https://main--magenta-genie-2c7a89.netlify.app/)
