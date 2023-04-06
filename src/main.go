@@ -4,8 +4,8 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/ruhamayared/healing-pages/src/database"
 	"github.com/ruhamayared/healing-pages/src/handlers"
-	customMiddleware "github.com/ruhamayared/healing-pages/src/userauth" // Import your custom JWT middleware from "src/userauth"
 
+	// Import your custom JWT middleware from "src/userauth"
 	"github.com/labstack/echo/v4"
 )
 
@@ -19,16 +19,12 @@ func main() {
 	// Set up CORS middleware
 	e.Use(middleware.CORS())
 
-	// Add middleware for logging and recovering from panics
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-
 	// Routes for CRUD operations, all protected with JWT middleware
-	e.POST("/entries", handlers.CreateEntry, customMiddleware.JWTMiddleware)
-	e.GET("/entries/:id", handlers.GetEntry, customMiddleware.JWTMiddleware)
-	e.GET("/entries", handlers.GetAllEntries, customMiddleware.JWTMiddleware)
-	e.PUT("/entries/:id", handlers.UpdateEntry, customMiddleware.JWTMiddleware)
-	e.DELETE("/entries/:id", handlers.DeleteEntry, customMiddleware.JWTMiddleware)
+	e.POST("/entries", handlers.CreateEntry)
+	e.GET("/entries/:id", handlers.GetEntry)
+	e.GET("/entries", handlers.GetAllEntries)
+	e.PUT("/entries/:id", handlers.UpdateEntry)
+	e.DELETE("/entries/:id", handlers.DeleteEntry)
 
 	// Start the server and listen on port 8080
 	e.Logger.Fatal(e.Start(":8080"))
