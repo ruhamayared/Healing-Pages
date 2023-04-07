@@ -33,14 +33,9 @@ func callbackHandler(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusUnauthorized, err.Error())
 	}
 
-	provider, err := goth.GetProvider(user.Provider)
-	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "invalid provider")
-	}
-
 	session, _ := sessionStore.Get(c.Request(), "user-session")
 	session.Values["user_id"] = user.UserID
-	session.Values["provider_name"] = provider.Name()
+	session.Values["provider_name"] = user.Provider
 	session.Save(c.Request(), c.Response())
 
 	return c.Redirect(http.StatusFound, "/")
