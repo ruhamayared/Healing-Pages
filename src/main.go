@@ -17,9 +17,11 @@ import (
 var sessionStore = sessions.NewCookieStore([]byte(os.Getenv("SESSION_SECRET")))
 
 func init() {
+	sessionStore := sessions.NewCookieStore([]byte(os.Getenv("SESSION_SECRET")))
 	goth.UseProviders(
 		google.New(os.Getenv("GOOGLE_KEY"), os.Getenv("GOOGLE_SECRET"), "http://localhost:8080/auth/google/callback"),
 	)
+	gothic.Store = sessionStore
 }
 
 func loginHandler(c echo.Context) error {
