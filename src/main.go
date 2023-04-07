@@ -35,6 +35,8 @@ func callbackHandler(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusUnauthorized, err.Error())
 	}
 
+	user.Provider = "google"
+
 	session, _ := sessionStore.Get(c.Request(), "user-session")
 	session.Values["user_id"] = user.UserID
 	session.Values["provider_name"] = user.Provider
