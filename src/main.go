@@ -14,7 +14,7 @@ import (
 	"github.com/ruhamayared/healing-pages/src/handlers"
 )
 
-var sessionStore = sessions.NewCookieStore([]byte("your_session_secret"))
+var sessionStore = sessions.NewCookieStore([]byte(os.Getenv("SESSION_SECRET")))
 
 func init() {
 	goth.UseProviders(
